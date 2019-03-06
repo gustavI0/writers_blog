@@ -4,7 +4,8 @@
 <h1>Le blog de l'écrivain</h1>
 <p><a href="index.php?p=admin">Retour à l'administration</a></p>
 
-    <h2>Ajouter un billet</h2>
+<h2>Ajouter un billet</h2>
+
 <div class="container">
     <form action="index.php?p=newPost" method="post">
         <div class ="form-group">
