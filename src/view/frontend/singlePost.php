@@ -37,26 +37,33 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-8 col-md-6">
             <h3>Commentaires</h3>
-                <?php
-                while ($comment = $comments->fetch())
-                {
-                ?>
-                    <div class="comment">
-                        <p>
-                            <strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?> (<a href="index.php?p=comment&amp;id=<?= $comment['id'] ?>">signaler</a>)
-                        </p>
-                        <p>
-                            <?= nl2br(htmlspecialchars($comment['comment'])) ?>
-                        </p>
-                    </div>
+            <?php
+            while ($comment = $comments->fetch())
+            {
+            ?>
+                <div class="comment">
+                    <p>
+                        <strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?> (<a href="index.php?p=signalComment&amp;id=<?= $comment['id'] ?>&amp;post_id=<?= $post['id'] ?>" class="signal_comment">signaler</a>)
+                    </p>
+                    <p>
+                        <?php
+                            if ($comment['moderation'] == true) {
+                                echo $comment['comment'] = '<p><em> Commentaire modéré</em></p>';
+                            } else {
+                                echo nl2br(htmlspecialchars($comment['comment']));
+                            }
+                        ?>
+                    </p>
                 </div>
-            </div>
+            <?php
+            }
+            ?>
         </div>
-    <?php
-    }
-    ?>
+    </div>
+</div>
+
 
 <div class="container">
     <div class="row">
