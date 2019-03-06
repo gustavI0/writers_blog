@@ -22,7 +22,7 @@ while ($data = $posts->fetch())
                             <?= nl2br(htmlspecialchars(substr($data['content'], 0, 200) . '...')) ?>
                         </p>
                         <p>
-                            <a href="index.php?p=post&amp;id=<?= $data['id'] ?>" class="read_more">Lire la suite</a>
+                            <a href="index.php?p=showPost&amp;id=<?= $data['id'] ?>" class="read_more">Lire la suite</a>
                         </p>
                     </div>
                 </div>
