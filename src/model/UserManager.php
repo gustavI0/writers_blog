@@ -26,7 +26,7 @@ class UserManager extends Manager {
 		return $req;
 	}
 
-	public function admin($pseudo, $pwd) {
+	public function connect($pseudo, $pwd) {
 
 		$db = $this->dbConnect();
 		$req = $db->prepare('SELECT id, pwd FROM users WHERE pseudo = :pseudo');
