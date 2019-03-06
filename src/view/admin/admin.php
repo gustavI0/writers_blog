@@ -26,7 +26,7 @@
 				?>
 					<tbody>
 					    <tr>
-					        <td><?= htmlspecialchars($post['title']) ?><br /><a href="index.php?p=post&amp;id=<?= $post['id'] ?>">Voir l'article</a></td>
+					        <td><?= htmlspecialchars($post['title']) ?><br /><a href="index.php?p=showPost&amp;id=<?= $post['id'] ?>">Voir l'article</a></td>
 					        <td><?= $post['creation_date_fr'] ?></td>
 					        <td><button type="button" class="btn btn-primary" onclick="window.location.href='index.php?p=editPost&amp;id=<?= $post['id'] ?>'">Editer</button> <button type="button" class="btn btn-danger" onclick="window.location.href='index.php?p=deletePost&amp;id=<?= $post['id'] ?>'">Supprimer</button></td>
 					    </tr>
@@ -64,7 +64,7 @@
 						        <td><?= htmlspecialchars($comment['author']) ?></td>
 						        <td><?= htmlspecialchars($comment['comment']) ?></td>
 						        <td><?= $comment['comment_date_fr'] ?></td>
-						        <td><button type="button" class="btn btn-success" onclick="window.location.href='index.php?p=moderateComment&amp;id=<?= $comment['id'] ?>'">Approuver</button> <button type="button" class="btn btn-danger" onclick="window.location.href='index.php?p=deleteComment&amp;id=<?= $comment['id'] ?>'">Supprimer</button></td>
+						        <td><button type="button" class="btn btn-success" onclick="window.location.href='index.php?p=approveComment&amp;id=<?= $comment['id'] ?>'">Approuver</button> <button type="button" class="btn btn-danger" onclick="window.location.href='index.php?p=deleteComment&amp;id=<?= $comment['id'] ?>'">Supprimer</button></td>
 						    </tr>
 					<?php
 					}
