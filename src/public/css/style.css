@@ -1,7 +1,6 @@
 body {
-    background-color: #fce043;
-    background-image: linear-gradient(315deg, #fce043 0%, #fb7ba2 74%);
-    color: black;
+    background-color: #343148;
+    color: #fff;
     font-family: Arial, sans-serif;
 }
 
@@ -11,11 +10,11 @@ nav {
 
 main {
     padding-top: 100px;
+    margin-bottom: 100px;
 }
 
 h1, h2, h3 {
     text-align: center;
-    color: #fff;
     text-shadow: 3px 3px #000;
 }
 
@@ -25,11 +24,12 @@ h3 {
 
 a {
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 500;
+    color: #f0ead6;
 }
 
 a:hover {
-    color: black;
+    color: #fff;
 }
 
 th, td {
@@ -45,7 +45,8 @@ th, td {
 }
 
 .excerpt_post_home, .table, .content_single_post, .comment {
-    background-color: #fff;
+    background-color: #f0ead6;
+    color: #161616;
     margin: 30px;
     box-shadow: 10px 10px #000;
     padding: 20px;
@@ -61,11 +62,21 @@ th, td {
     padding: 10px;
 }
 
+.read_more:hover {
+    background-color: #343148;
+    cursor: pointer;
+}
+
 .content_single_post {
     width: 90%;
     margin: auto;
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+.signal_comment {
+    color: #161616;
+    font-weight: bold;
 }
 
 .admin_posts, .admin_comments {
