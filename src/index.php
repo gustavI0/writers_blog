@@ -1,26 +1,28 @@
 <?php
-if(!isset($_SESSION)) 
-    { 
-        session_start(); 
-    } 
+if(!isset($_SESSION)) { 
+    session_start(); 
+} 
 
 require('controller/frontController.php');
 require('controller/adminController.php');
+require('controller/loginController.php');
 
 try {
+
     // Gestion de l'affichage des pages front
     if (isset($_GET['p'])) {
         if ($_GET['p'] == 'listPosts') {
             listPosts();
         }
-        elseif ($_GET['p'] == 'post') {
+        elseif ($_GET['p'] == 'showPost') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                post();
+                showPost();
             }
             else {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
+
         // Gestion des billets
         elseif ($_GET['p'] == 'addPost') {
                 addPost();
@@ -62,6 +64,7 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
+
         // Gestion des commentaires
         elseif ($_GET['p'] == 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -84,17 +87,28 @@ try {
                 throw new Exception('Aucun identifiant de commentaire envoyé');
             }
         }
-        elseif ($_GET['p'] == 'updateComment') {
+        elseif ($_GET['p'] == 'signalComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                if (!empty($_POST['comment'])) {
-                    updateComment($_GET['id'], $_POST['comment'], $_GET['post_id']);
-                } else {
-                    throw new Exception('Le champ de commentaire est vide !');
-                }
+                signalComment($_GET['id'], $_GET['post_id']);
             } else {
                 throw new Exception('Aucun identifiant de commentaire envoyé');
             }
         }
+        elseif ($_GET['p'] == 'approveComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                approveComment($_GET['id']);
+            } else {
+                throw new Exception('Aucun identifiant de commentaire envoyé');
+            }
+        }
+        elseif ($_GET['p'] == 'deleteComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                deleteComment($_GET['id']);
+            } else {
+                throw new Exception('Aucun identifiant de commentaire envoyé');
+            }
+        }
+
         // Gestion des utilisateurs
         elseif ($_GET['p'] == 'signup') {
                 signup();
@@ -109,6 +123,9 @@ try {
             } else {
                 throw new Exception('Tous les champs ne sont pas remplis !');
             }   
+        }
+        elseif ($_GET['p'] == 'regSuccess') {
+                header('Location: frontend/regSuccess.php');
         }
         elseif ($_GET['p'] == 'signin') {
                 signin();
