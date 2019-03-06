@@ -71,18 +71,23 @@ function deletePost($postId) {
 function approveComment($commentId) {
 
     $commentManager = new \OpenClassrooms\Blog\Model\CommentManager();
-    $comment = $commentManager->getComment($_GET['id']);
-    
+    $approvedComment = $commentManager->okComment($commentId);
 
+    if ($deletedComment === false) {
+        throw new Exception('Impossible d\'approuver le commentaire !');
+    }
+    else {
+        header('Location: index.php?p=admin');
+    }
 }
 
 function deleteComment($commentId) {
 
-	$postManager = new \OpenClassrooms\Blog\Model\PostManager();
-	$deletedPost = $postManager->erasePost($postId);
+	$commentManager = new \OpenClassrooms\Blog\Model\CommentManager();
+	$deletedComment = $commentManager->eraseComment($commentId);
 
-	if ($deletedPost === false) {
-        throw new Exception('Impossible de supprimer le billet !');
+	if ($deletedComment === false) {
+        throw new Exception('Impossible de supprimer le commentaire !');
     }
     else {
         header('Location: index.php?p=admin');
