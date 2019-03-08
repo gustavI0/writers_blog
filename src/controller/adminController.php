@@ -21,7 +21,7 @@ function addPost() {
     require('view/admin/addPost.php');
 }
 
-function newPost($postTitle, $postContent) {
+function createPost($postTitle, $postContent) {
 
     $postManager = new \OpenClassrooms\Blog\Model\PostManager();
     $newPost = $postManager->addingPost($postTitle, $postContent);
@@ -30,7 +30,10 @@ function newPost($postTitle, $postContent) {
         throw new Exception('Impossible d\'ajouter le billet !');
     }
     else {
-        header('Location: index.php?p=admin');
+        editPost();
+        $alert = '<div class="alert alert-success" role="alert">
+                    This is a success alert—check it out!
+                </div>';
     }
 }
 
@@ -51,7 +54,10 @@ function updatePost($postId, $postTitle, $postContent) {
         throw new Exception('Impossible de modifier le billet !');
     }
     else {
-        header('Location: index.php?p=admin');
+        header('Location: index.php?p=editPost&id=' . $postId);
+        $alert = '<div class="alert alert-success" role="alert">
+                    This is a success alert—check it out!
+                </div>';
     }
 }
 
