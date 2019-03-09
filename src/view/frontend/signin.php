@@ -5,6 +5,13 @@
 
 <div class="container">
 	<div class="col-sm-12">
+		<?php
+            if (isset($_GET['result'])) {
+                if ($_GET['result'] === 'failed') {
+                    echo '<div class="alert alert-danger" role="alert">Mauvais identifiant ou mot de passe !</div>';
+                }
+            }  
+        ?>
 		<div class="log_form">
 			<form action="index.php?p=login" method="post">
 				<div class="form-group row">
@@ -20,8 +27,8 @@
 					</div>
 				</div>
 				<div class="form-check row">
-				    <input type="checkbox" name="login_checked" class="form-check-input" id="login_checked">
-				    <label class="form-check-label" for="remember">Se souvenir de moi</label>
+				    <input type="checkbox" name="cookie" class="form-check-input" id="cookie">
+				    <label class="form-check-label" for="cookie">Se souvenir de moi</label>
 				</div>
 				<button type="submit" class="btn btn-primary" value="Valider"/>Valider</button>
 			</form>
