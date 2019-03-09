@@ -29,7 +29,7 @@ try {
         }
         elseif ($_GET['p'] == 'newPost') {
             if (!empty($_POST['content'])) {
-                newPost($_POST['title'], $_POST['content']);
+                createPost($_POST['title'], $_POST['content']);
             }
             else {
                 throw new Exception('Le champ de billet est vide !');
@@ -114,18 +114,18 @@ try {
                 signup();
         }
         elseif ($_GET['p'] == 'register') {
-            if (!empty($_POST['pseudo']) && !empty($_POST['pwd']) && !empty($_POST['email'])) {
-                if(!preg_match($_POST['pwd'], $_POST['pwd2'])) {
-                    register($_POST['pseudo'], $_POST['pwd'], $_POST['email']);
+            if (!empty($_POST['pseudo']) && !empty($_POST['pwd']) && !empty($_POST['pwd']) && !empty($_POST['email'])) {
+                if($_POST['pwd'] !== $_POST['pwd2']) {
+                    header('Location: index.php?p=signup&status=difpwd');
                 } else {
-                throw new Exception('Vos mots de passe ne correspondent pas !');
+                    register($_POST['pseudo'], $_POST['pwd'], $_POST['email']);
                 } 
             } else {
-                throw new Exception('Tous les champs ne sont pas remplis !');
+                header('Location: index.php?p=signup&status=fieldmissing');
             }   
         }
         elseif ($_GET['p'] == 'regSuccess') {
-                header('Location: frontend/regSuccess.php');
+                regSuccess();
         }
         elseif ($_GET['p'] == 'signin') {
                 signin();
@@ -140,7 +140,7 @@ try {
         }
         elseif ($_GET['p'] == 'admin') {
             if (isset($_SESSION['id'])) {
-                adminPosts();
+                admin();
             } else {
                 throw new Exception('Vous ne passerez pas !');
             }
