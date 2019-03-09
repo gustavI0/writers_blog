@@ -6,6 +6,8 @@ body {
 
 nav {
     padding: 10px;
+    background-color: #f0ead6;
+    box-shadow: 10px 10px #161616;
 }
 
 main {
@@ -29,11 +31,15 @@ a {
 }
 
 a:hover {
-    color: #fff;
+    color: #161616;
 }
 
 th, td {
     text-align: center;
+}
+
+.modal-title, .modal-body {
+    color: #161616;
 }
 
 .post_home {
@@ -47,23 +53,24 @@ th, td {
 .excerpt_post_home, .table, .content_single_post, .comment {
     background-color: #f0ead6;
     color: #161616;
-    margin: 30px;
-    box-shadow: 10px 10px #000;
+    margin-top: 30px;
+    box-shadow: 10px 10px #161616;
     padding: 20px;
 }
 
 .date_post_home, .date_single_post {
-    padding-left: 20px;
+
     color: #fff;
+    text-align: center;
 }
 
-.read_more {
+.link_btn {
     background-color: #161616;
     padding: 10px;
 }
 
-.read_more:hover {
-    background-color: #343148;
+.link_btn:hover {
+    background-color: #fff;
     cursor: pointer;
 }
 
@@ -74,7 +81,7 @@ th, td {
     margin-bottom: 30px;
 }
 
-.signal_comment {
+.dark_link {
     color: #161616;
     font-weight: bold;
 }
