@@ -19,7 +19,7 @@ function showPost() {
 
 
     $post = $postManager->getPost($_GET['id']);
-    $comments = $commentManager->getComments($_GET['id']);
+    $comments = $commentManager->getPostComments($_GET['id']);
 
     require('view/frontend/singlePost.php');
 }
@@ -27,7 +27,7 @@ function showPost() {
 function addComment($postId, $author, $comment) {
 
     $commentManager = new \OpenClassrooms\Blog\Model\CommentManager();
-    $affectedLines = $commentManager->postComment($postId, $author, $comment);
+    $affectedLines = $commentManager->insertComment($postId, $author, $comment);
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
