@@ -1,10 +1,12 @@
-<?php $title = 'Editer un billet'; ?>
+<?php $title = 'Editer un billet'; 
+
+?>
  
 <?php ob_start(); ?>
-<h1>Le blog de l'écrivain</h1>
-<p><a href="index.php?p=admin">Retour à l'administration</a></p>
+<h1>Writer's blog</h1>
+<p><a href="index.php?p=admin" class="link_btn">Retour à l'administration</a></p>
 
-    <h2>Editer un billet</h2>
+<h2>Editer un billet</h2>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -12,6 +14,23 @@
                 <p>
                     <em>Publié le <?= $post['creation_date_fr'] ?></em>
                 </p>
+                <?php
+                    if (isset($_GET['result'])) {
+                        if ($_GET['result'] === 'success') {
+                            echo '<div class="alert alert-success" role="alert">
+                            Ce billet a bien été mis à jour ! <a href="#">Voir l\'article</a>
+                            </div>';
+                        } elseif ($_GET['result'] === 'failed') {
+                            echo '<div class="alert alert-danger" role="alert">
+                            Impossible d\'éditer ce billet !
+                            </div>';
+                        }
+                    }  
+                ?>
+                <!--<div class ="form-group">
+                    <label for="date">Publié le :</label>
+                    <input type="date" id="date" name="date" class="form-control" value="<?= $post['creation_date'] ?>"/>
+                </div>-->
                 <div class ="form-group">
                     <label for="title">Titre :</label><br />
                     <input id="title" name="title" class="form-control" value="<?= nl2br(htmlspecialchars($post['title'])) ?>"/>
@@ -21,7 +40,7 @@
                     <textarea id="content" name="content" class="form-control" rows="20" cols="60"><?= nl2br(htmlspecialchars($post['content'])) ?></textarea>
                 </div>
                 <div class ="form-group">
-                    <button type="submit" class="btn btn-primary" value="Modifier" />Modifier</button>
+                    <button type="submit" class="btn btn-primary" value="Modifier"/>Modifier</button>
                 </div>
             </form>
         </div>
