@@ -12,7 +12,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <p><a href="index.php">Retour à l'accueil</a></p>
+            <p><a href="index.php" class="link_btn">Retour à l'accueil</a></p>
         </div>
     </div>
 </div>
@@ -45,7 +45,7 @@
             ?>
                 <div class="comment">
                     <p>
-                        <strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?> (<a href="index.php?p=signalComment&amp;id=<?= $comment['id'] ?>&amp;post_id=<?= $post['id'] ?>" class="signal_comment">signaler</a>)
+                        <strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?> (<a href="index.php?p=signalComment&amp;id=<?= $comment['id'] ?>&amp;post_id=<?= $post['id'] ?>" class="dark_link">signaler</a>)
                     </p>
                     <p>
                         <?php
