@@ -6,18 +6,12 @@ require_once("model/Manager.php");
 
 class UserManager extends Manager {
 
-	public function getUserInfo(){
-
-		$db = $this->dbConnect();
-        $req = $db->query('SELECT pseudo, pwd, email FROM users');
-
-        return $req;
-	}
-
 	public function inscription($pseudo, $pass_hache, $email) {
 
 		$db = $this->dbConnect();
-		$req = $db->prepare('INSERT INTO users(pseudo, pwd, email) VALUES(:pseudo, :pwd, :email)');
+		$req = $db->prepare('
+			INSERT INTO users(pseudo, pwd, email) 
+			VALUES(:pseudo, :pwd, :email)');
 		$req->execute(array(
 			'pseudo' => $pseudo,
 			'pwd' => $pass_hache,
@@ -26,10 +20,13 @@ class UserManager extends Manager {
 		return $req;
 	}
 
-	public function connect($pseudo, $pwd) {
+	public function getUserCred($pseudo) {
 
 		$db = $this->dbConnect();
-		$req = $db->prepare('SELECT id, pwd FROM users WHERE pseudo = :pseudo');
+		$req = $db->prepare('
+			SELECT id, pwd 
+			FROM users 
+			WHERE pseudo = :pseudo');
 		$req->execute(array(
 			'pseudo' => $pseudo));
 		$result = $req->fetch();
