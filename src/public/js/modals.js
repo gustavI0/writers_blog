@@ -1,10 +1,11 @@
-let deleteComment = document.getElementById('#delete_comment');
+$(document).ready(function(){
+	$('#delete-comment').on('show.bs.modal', function(e) {
+	    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+	});
+});
 
-deleteComment.addEventListener('click', (e)=>{
-    e.preventDefault();
-	let choice = confirm(this.getAttribute('data-confirm'));
-
-    if (choice) {
-        window.location.href = this.getAttribute('href');
-    }
+$(document).ready(function(){
+	$('#delete-post').on('show.bs.modal', function(e) {
+	    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+	});
 });
