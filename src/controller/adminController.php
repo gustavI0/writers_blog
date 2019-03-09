@@ -4,7 +4,7 @@ require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('model/UserManager.php');
 
-function adminPosts() {
+function admin() {
 
     $postManager = new \OpenClassrooms\Blog\Model\PostManager();
     $commentManager = new \OpenClassrooms\Blog\Model\CommentManager();
@@ -30,10 +30,7 @@ function createPost($postTitle, $postContent) {
         throw new Exception('Impossible d\'ajouter le billet !');
     }
     else {
-        editPost();
-        $alert = '<div class="alert alert-success" role="alert">
-                    This is a success alert—check it out!
-                </div>';
+        header('Location: index.php');
     }
 }
 
@@ -51,13 +48,10 @@ function updatePost($postId, $postTitle, $postContent) {
     $affectedPost = $postManager->modifyPost($postId, $postTitle, $postContent);
     
     if ($affectedPost === false) {
-        throw new Exception('Impossible de modifier le billet !');
+        header('Location: index.php?p=editPost&id=' . $postId . '&result=failed');
     }
     else {
-        header('Location: index.php?p=editPost&id=' . $postId);
-        $alert = '<div class="alert alert-success" role="alert">
-                    This is a success alert—check it out!
-                </div>';
+        header('Location: index.php?p=editPost&id=' . $postId . '&result=success');
     }
 }
 
