@@ -6,6 +6,15 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
+			<?php
+                if (isset($_GET['status'])) {
+                    if ($_GET['status'] === 'difpwd') {
+                        echo '<div class="alert alert-danger" role="alert">Vos mots de passe sont différents !</div>';
+                    } elseif ($_GET['status'] === 'fieldmissing') {
+                        echo '<div class="alert alert-danger" role="alert">Tous les champs ne sont pas remplis !</div>';
+                    }
+                }
+            ?>
 			<form action="index.php?p=register" method="post">
 				<div class="form-group">
 					<div class="col-sm-4">
