@@ -4,11 +4,11 @@
 <?php ob_start(); ?>
 
 <!-- Modal suppression billet-->
-<div class="modal fade" id="delete_post" tabindex="-1" role="dialog" aria-labelledby="delete_post" aria-hidden="true">
+<div class="modal fade" id="delete-post" tabindex="-1" role="dialog" aria-labelledby="delete-post" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="delete_post">Supprimer un billet</h5>
+        <h5 class="modal-title" id="delete-post">Supprimer un billet</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -18,7 +18,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-danger" onclick="window.location.href='index.php?p=deletePost&amp;id=<?= $post['id'] ?>'">Supprimer</button>
+        <a class="btn btn-danger btn-ok">Supprimer</a>
       </div>
     </div>
   </div>
@@ -59,7 +59,7 @@
 					        </td>
 					        <td>
 					        	<button type="button" class="btn btn-primary" onclick="window.location.href='index.php?p=editPost&amp;id=<?= $post['id'] ?>'">Editer</button>
-					        	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_post">Supprimer</button>
+					        	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-post" data-href="index.php?p=deletePost&amp;id=<?= $post['id'] ?>">Supprimer</button>
 					        </td>
 					    </tr>
 				<?php
@@ -74,7 +74,7 @@
 </div>
 
 <!-- Modal suppression commentaire-->
-<div class="modal fade" id="modal_delete_comment" tabindex="-1" role="dialog" aria-labelledby="delete_comment" aria-hidden="true">
+<div class="modal fade" id="delete-comment" tabindex="-1" role="dialog" aria-labelledby="delete_comment" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -88,7 +88,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <a class="btn btn-danger" href="index.php?p=deleteComment&amp;id=<?= $comment['id'] ?>">Supprimer</a>
+        <a class="btn btn-danger btn-ok">Supprimer</a>
       </div>
     </div>
   </div>
@@ -122,12 +122,12 @@
 						        <?php
 						        if ($comment['moderation'] == TRUE) {
 						        	echo '<td>
-						        		<button type="button" class="btn btn-success" onclick="window.location.href=\'index.php?p=approveComment&amp;id=<?= $comment[\'id\'] ?>\'">Approuver</button>
-						        		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal_delete_comment">Supprimer</button>
+						        		<button type="button" class="btn btn-success" onclick="window.location.href=\'index.php?p=approveComment&amp;id=' . $comment['id'] . '\'">Approuver</button>
+						        		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-comment" data-href="index.php?p=deleteComment&amp;id=' . $comment['id'] . '">Supprimer</button>
 						        		</td>';
 						        } else {
 						        	echo '<td>
-						        	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal_delete_comment">Supprimer</button>
+						        	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-comment" data-href="index.php?p=deleteComment&amp;id=' . $comment['id'] . '">Supprimer</button>
 						        	</td>';
 						        }
 						        ?>
