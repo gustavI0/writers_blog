@@ -21,8 +21,13 @@ function register($pseudo, $pwd, $email) {
         throw new Exception('Impossible d\'inscrire le nouvel utilisateur !');
     }
     else {
-        header('Location: index.php?=regSuccess');
+        header('Location: index.php?p=regSuccess');
     }
+}
+
+function regSuccess() {
+
+    require('view/frontend/regSuccess.php');
 }
 
 function signin() {
@@ -33,13 +38,13 @@ function signin() {
 function login($pseudo, $pwd) {
 
     $userManager = new \OpenClassrooms\Blog\Model\UserManager();
-    $result = $userManager->connect($pseudo, $pwd);
+    $result = $userManager->getUserCred($pseudo);
 
-    $isPasswordCorrect = password_verify($_POST['pwd'], $result['pwd']);
+    $isPasswordCorrect = password_verify($pwd, $result['pwd']);
     
     if (!$result)
     {
-        echo 'Mauvais identifiant ou mot de passe !';
+        header('Location: index.php?p=signin&result=failed');
     }
     else
     {
@@ -50,11 +55,11 @@ function login($pseudo, $pwd) {
             header('Location: index.php?p=admin');
         }
         else {
-            echo 'Mauvais identifiant ou mot de passe !';
+            header('Location: index.php?p=signin&result=failed');
         }
     }
 
-    if (isset ($_POST['login_checked'])) {
+    if (isset ($_POST['cookie'])) {
         setcookie('pseudo', $pseudo, time() + 365*24*3600, null, null, false, true);
         setcookie('pwd', $result['pwd'], time() + 365*24*3600, null, null, false, true);
     }
