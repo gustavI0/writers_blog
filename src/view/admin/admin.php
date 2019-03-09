@@ -3,8 +3,33 @@
 
 <?php ob_start(); ?>
 
-<div class="add">
-	<button type="button" class="btn btn-info" onclick="window.location.href='index.php?p=addPost'">Ajouter un billet</button>
+<!-- Modal suppression billet-->
+<div class="modal fade" id="delete_post" tabindex="-1" role="dialog" aria-labelledby="delete_post" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="delete_post">Supprimer un billet</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Souhaitez-vous réellement supprimer ce billet ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-danger" onclick="window.location.href='index.php?p=deletePost&amp;id=<?= $post['id'] ?>'">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="add">
+			<button type="button" class="btn btn-info" onclick="window.location.href='index.php?p=addPost'">Ajouter un billet</button>
+		</div>
+	</div>
 </div>
 
 <div class="container">
@@ -12,7 +37,7 @@
 		<div class="col-md-12">
 			<div class="admin_posts">
 				<h2>Liste des billets</h2>
-				<table class="table">
+				<table class="table table-hover">
 					<thead>
 						<tr>
 							<th>Titre</th>
@@ -26,9 +51,16 @@
 				?>
 					<tbody>
 					    <tr>
-					        <td><?= htmlspecialchars($post['title']) ?><br /><a href="index.php?p=showPost&amp;id=<?= $post['id'] ?>">Voir l'article</a></td>
-					        <td><?= $post['creation_date_fr'] ?></td>
-					        <td><button type="button" class="btn btn-primary" onclick="window.location.href='index.php?p=editPost&amp;id=<?= $post['id'] ?>'">Editer</button> <button type="button" class="btn btn-danger" onclick="window.location.href='index.php?p=deletePost&amp;id=<?= $post['id'] ?>'">Supprimer</button></td>
+					        <td>
+					        	<?= htmlspecialchars($post['title']) ?><br /><a href="index.php?p=showPost&amp;id=<?= $post['id'] ?>" class="dark_link">Voir l'article</a>
+					        </td>
+					        <td>
+					        	<?= $post['creation_date_fr'] ?>
+					        </td>
+					        <td>
+					        	<button type="button" class="btn btn-primary" onclick="window.location.href='index.php?p=editPost&amp;id=<?= $post['id'] ?>'">Editer</button>
+					        	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_post">Supprimer</button>
+					        </td>
 					    </tr>
 				<?php
 				}
@@ -41,14 +73,36 @@
 	</div>
 </div>
 
+<!-- Modal suppression commentaire-->
+<div class="modal fade" id="modal_delete_comment" tabindex="-1" role="dialog" aria-labelledby="delete_comment" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="delete_comment">Supprimer un commentaire</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Souhaitez-vous réellement supprimer ce commentaire ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <a class="btn btn-danger" href="index.php?p=deleteComment&amp;id=<?= $comment['id'] ?>">Supprimer</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="admin_comments">
-				<h2>Liste des commentaires à modérer</h2>
-					<table class="table">
+				<h2>Liste des commentaires</h2>
+					<table class="table table-hover">
 						<thead>
 							<tr>
+								<th>Article</th>
 								<th>Auteur</th>
 								<th>Contenu</th>
 								<th>Date de publication</th>
@@ -61,10 +115,22 @@
 					?>
 						<tbody>
 						    <tr>
+						    	<td><?= htmlspecialchars($comment['title']) ?><br /><a href="index.php?p=showPost&amp;id=<?= $comment['post_id'] ?>" class="dark_link">Voir l'article</a></td>
 						        <td><?= htmlspecialchars($comment['author']) ?></td>
 						        <td><?= htmlspecialchars($comment['comment']) ?></td>
 						        <td><?= $comment['comment_date_fr'] ?></td>
-						        <td><button type="button" class="btn btn-success" onclick="window.location.href='index.php?p=approveComment&amp;id=<?= $comment['id'] ?>'">Approuver</button> <button type="button" class="btn btn-danger" onclick="window.location.href='index.php?p=deleteComment&amp;id=<?= $comment['id'] ?>'">Supprimer</button></td>
+						        <?php
+						        if ($comment['moderation'] == TRUE) {
+						        	echo '<td>
+						        		<button type="button" class="btn btn-success" onclick="window.location.href=\'index.php?p=approveComment&amp;id=<?= $comment[\'id\'] ?>\'">Approuver</button>
+						        		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal_delete_comment">Supprimer</button>
+						        		</td>';
+						        } else {
+						        	echo '<td>
+						        	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal_delete_comment">Supprimer</button>
+						        	</td>';
+						        }
+						        ?>
 						    </tr>
 					<?php
 					}
