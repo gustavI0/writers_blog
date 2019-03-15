@@ -58,19 +58,6 @@ class PostManager extends Manager {
         return $affectedPost;
     }
 
-    public function newPost() {
-
-        $db = $this->dbConnect();
-        $req = $db->prepare('
-            INSERT INTO posts(title, content, creation_date) 
-            VALUES(:title, :content, NOW())');
-        $newPost = $req->execute(array(
-            'title' => $title,
-            'content' => $content));
-
-        return $newPost;
-    }
-
     public function erasePost($postId) {
 
         $db = $this->dbConnect();
