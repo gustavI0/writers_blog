@@ -30,7 +30,7 @@ function createPost($postTitle, $postContent) {
         throw new Exception('Impossible d\'ajouter le billet !');
     }
     else {
-        header('Location: index.php');
+        header('Location: index.php?p=admin');
     }
 }
 
