@@ -6,8 +6,8 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<p><a href="index.php" class="btn btn_link">Retourner à la page d'accueil</a><br />
-			<a href="index.php?p=signin" class="btn btn_link">Connectez-vous</a></p>
+			<p><a href="index.php">Retourner à la page d'accueil</a><br />
+			<a href="index.php?p=signin">Connectez-vous</a></p>
 		</div>
 	</div>
 </div>

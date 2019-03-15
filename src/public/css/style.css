@@ -1,11 +1,13 @@
 body {
-    background-color: #345967;
+    background-color: #343148;
     color: #fff;
-    font-family: 'Lato', Arial, sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 nav {
     padding: 10px;
+    background-color: #f0ead6;
+    box-shadow: 10px 10px #161616;
 }
 
 main {
@@ -14,7 +16,6 @@ main {
 }
 
 h1, h2, h3 {
-    font-family: 'Merriweather', Times, serif;
     text-align: center;
     text-shadow: 3px 3px #000;
 }
@@ -24,67 +25,22 @@ h3 {
 }
 
 a {
-    text-decoration: none !important;
+    text-decoration: none;
     font-weight: 500;
-    color: #345967;
+    color: #f0ead6;
 }
 
 a:hover {
     color: #161616;
 }
 
-h1 a, h1 a:hover {
-    color: #fff;
-}
-
 th, td {
     text-align: center;
 }
 
-input, textarea, .dropdown-menu {
-    border-radius: 0px !important;
+.modal-title, .modal-body {
+    color: #161616;
 }
-
-input:focus, textarea:focus {
-    box-shadow: 10px 10px #161616 !important;
-}
-
-.btn {
-    margin: 5px;
-    border-radius: 0px !important;
-    color: #eaefee;
-}
-
-.btn:hover {
-    box-shadow: 5px 5px #161616;
-    cursor: pointer;
-    color: #eaefee;
-}
-
-.btn_basic {
-    margin-left: 0px;
-    background-color: #428bca;
-}
-
-.btn_delete {
-    background-color: #d9534f;
-}
-
-.btn_approve {
-    background-color: #5cb85c;
-}
-
-.btn_link {
-    background-color: #161616;
-}
-
-.btn_link:hover {
-    background-color: #5d5f5f;
-    box-shadow: 5px 5px #161616;
-    transition: 0.1s;
-}
-
-/* Homepage */
 
 .post_home {
     margin-top: 50px;
@@ -95,7 +51,7 @@ input:focus, textarea:focus {
 }
 
 .excerpt_post_home, .table, .content_single_post, .comment {
-    background-color: #eaefee;
+    background-color: #f0ead6;
     color: #161616;
     margin-top: 30px;
     box-shadow: 10px 10px #161616;
@@ -103,20 +59,24 @@ input:focus, textarea:focus {
 }
 
 .date_post_home, .date_single_post {
+
     color: #fff;
     text-align: center;
 }
 
+.link_btn {
+    background-color: #161616;
+    padding: 10px;
+}
 
-
-/* Page single post */
-
-.single_post {
-    width: 90%;
-    margin: auto;
+.link_btn:hover {
+    background-color: #fff;
+    cursor: pointer;
 }
 
 .content_single_post {
+    width: 90%;
+    margin: auto;
     margin-top: 30px;
     margin-bottom: 30px;
 }
@@ -126,12 +86,6 @@ input:focus, textarea:focus {
     font-weight: bold;
 }
 
-.add_comment {
-    margin-top: 30px;
-}
-
-/* Page admin */
-
 .admin_posts, .admin_comments {
     padding: 20px;
 }
@@ -140,15 +94,9 @@ input:focus, textarea:focus {
     margin-top: 50px;
 }
 
-.moderate_row, .moderate_row:hover {
-    box-shadow:inset 0px 0px 0px 5px #d9534f;
+.btn {
+    margin-top: 15px;
 }
-
-.modal-title, .modal-body {
-    color: #161616;
-}
-
-/* Page de login et inscription */
 
 .log_form {
     width: 90%;

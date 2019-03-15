@@ -1,25 +1,29 @@
 <?php
-
-include ('view/admin/config.php');
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+    
 include ('view/templates/head.php');
 
 ?>
+        
     <body>
         <nav>
             <div>
                 <?php
                 if (isset($_SESSION['id']) AND isset($_SESSION['pseudo'])) {
                     echo '<div class="dropdown">
-                    <a class="btn btn_link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Bonjour ' . $_SESSION['pseudo'] . ' ! 
-                    </a>
+                    </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="index.php?p=admin">Accès au panneau d\'administration</a>
                     <a class="dropdown-item" href="index.php?p=disconnect">Se déconnecter</a>
                     </div>
                     </div>';
                 } else {
-                    echo '<a href="index.php?p=signin" class="btn btn_link">Connexion</a>';
+                    echo '<button type="button" class="btn btn-secondary" onclick="window.location.href=\'index.php?p=signin\'">Connexion</button>';
                 }
                 ?>
             </div>

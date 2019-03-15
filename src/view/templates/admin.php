@@ -1,6 +1,9 @@
 <?php
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 
-include ('view/admin/config.php');
 include ('view/templates/head.php');
 
 ?>
@@ -11,15 +14,16 @@ include ('view/templates/head.php');
                 <?php
                 if (isset($_SESSION['id']) AND isset($_SESSION['pseudo'])) {
                     echo '<div class="dropdown">
-                    <a class="btn btn_link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Bonjour ' . $_SESSION['pseudo'] . ' ! </a>
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Bonjour ' . $_SESSION['pseudo'] . ' ! 
+                    </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="index.php">Accès à la page d\'accueil</a>
                     <a class="dropdown-item" href="index.php?p=disconnect">Se déconnecter</a>
                     </div>
                     </div>';
                 } else {
-                    echo '<a href="index.php?p=signin" class="btn btn_link">Se reconnecter</a>';
+                    echo '<p><a href="index.php?p=signin">Se reconnecter</a></p>';
                 }
                 ?>
             </div>

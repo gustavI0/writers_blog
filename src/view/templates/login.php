@@ -1,6 +1,9 @@
 <?php
-
-include ('view/admin/config.php');
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+    
 include ('view/templates/head.php');
 
 ?>
@@ -8,7 +11,7 @@ include ('view/templates/head.php');
     <body>
         <nav>
             <div>
-                <p><a href="index.php" class="btn btn_link">Accès à la page d'accueil</a></p>
+                <p><a href="index.php" class="link_btn">Accès à la page d'accueil</a></p>
             </div>
         </nav>
         <main>

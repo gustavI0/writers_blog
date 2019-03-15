@@ -6,20 +6,6 @@ require_once("model/Manager.php");
 
 class UserManager extends Manager {
 
-	public function getUserCred($pseudo) {
-
-		$db = $this->dbConnect();
-		$req = $db->prepare('
-			SELECT id, pwd 
-			FROM users 
-			WHERE pseudo = :pseudo');
-		$req->execute(array(
-			'pseudo' => $pseudo));
-		$result = $req->fetch();
-		
-		return $result;
-	}
-
 	public function inscription($pseudo, $pass_hache, $email) {
 
 		$db = $this->dbConnect();
@@ -32,6 +18,20 @@ class UserManager extends Manager {
 			'email' => $email));
 
 		return $req;
+	}
+
+	public function getUserCred($pseudo) {
+
+		$db = $this->dbConnect();
+		$req = $db->prepare('
+			SELECT id, pwd 
+			FROM users 
+			WHERE pseudo = :pseudo');
+		$req->execute(array(
+			'pseudo' => $pseudo));
+		$result = $req->fetch();
+		
+		return $result;
 	}
 
 }

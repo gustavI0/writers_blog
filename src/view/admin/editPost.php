@@ -3,9 +3,10 @@
 ?>
  
 <?php ob_start(); ?>
-<h1><?= $title; ?></h1>
-<p><a href="index.php?p=admin" class="btn btn_link">Retour à l'administration</a></p>
+<h1>Writer's blog</h1>
+<p><a href="index.php?p=admin" class="link_btn">Retour à l'administration</a></p>
 
+<h2>Editer un billet</h2>
 <div class="container">
     <div class="row">
         <div class="col-md-12">

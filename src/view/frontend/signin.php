@@ -30,7 +30,7 @@
 				    <input type="checkbox" name="cookie" class="form-check-input" id="cookie">
 				    <label class="form-check-label" for="cookie">Se souvenir de moi</label>
 				</div>
-				<button type="submit" class="btn btn_basic" value="Valider"/>Valider</button>
+				<button type="submit" class="btn btn-primary" value="Valider"/>Valider</button>
 			</form>
 		</div>
 	</div>

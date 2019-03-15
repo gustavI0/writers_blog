@@ -1,7 +1,7 @@
 <?php $title = 'Le blog de l\'écrivain'; ?>
 
 <?php ob_start(); ?>
-<h1><a href="index.php"><?= $title; ?></a></h1>
+<h1><?= $title; ?></h1>
 
 <?php
 while ($data = $posts->fetch())
@@ -19,10 +19,10 @@ while ($data = $posts->fetch())
                     </div>
                     <div class="excerpt_post_home">
                         <p>
-                            <?= nl2br(strip_tags(substr($data['content'], 0, 200) . '...')) ?>
+                            <?= nl2br(htmlspecialchars(substr($data['content'], 0, 200) . '...')) ?>
                         </p>
                         <p>
-                            <a href="index.php?p=showPost&amp;id=<?= $data['id'] ?>" class="btn btn_link">Lire la suite</a>
+                            <a href="index.php?p=showPost&amp;id=<?= $data['id'] ?>" class="link_btn">Lire la suite</a>
                         </p>
                     </div>
                 </div>

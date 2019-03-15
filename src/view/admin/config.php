@@ -1,8 +1,10 @@
 <?php
-    require_once('model/UserManager.php');
+	if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    }
 
-	if(isset ($_COOKIE['pseudo']) && isset ($_COOKIE['pwd']) && !isset($_SESSION)) {
-
+    if (isset ($_COOKIE['pseudo']) && isset ($_COOKIE['pwd'])) {
         $pseudo = $_COOKIE['pseudo'];
         $pwd = $_COOKIE['pwd'];
 
@@ -10,14 +12,8 @@
         $result = $userManager->getUserCred($pseudo);
         
         if ($pwd === $result['pwd']) {
-            
                 session_start();
                 $_SESSION['id'] = $result['id'];
                 $_SESSION['pseudo'] = $pseudo;
-        } 
-    } elseif (!isset($_SESSION)) { 
-
-        session_start();
+        }
     }
-
-?>
