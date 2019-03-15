@@ -40,7 +40,7 @@
 						<input type="email" class="form-control" name="email" size="45"/>
 					</div>
 				</div>
-					<button type="submit" class="btn btn-primary" value="Valider" />Valider</button>
+					<button type="submit" class="btn btn_basic" value="Valider">Valider</button>
 			</form>
 		</div>
 	</div>
