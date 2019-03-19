@@ -4,7 +4,6 @@
  
 <?php ob_start(); ?>
 <h1><?= $title; ?></h1>
-<p><a href="index.php?p=admin" class="btn btn_link">Retour à l'administration</a></p>
 
 <div class="container">
     <div class="row">
@@ -17,7 +16,7 @@
                     if (isset($_GET['result'])) {
                         if ($_GET['result'] === 'success') {
                             echo '<div class="alert alert-success" role="alert">
-                            Ce billet a bien été mis à jour ! <a href="#">Voir l\'article</a>
+                            Ce billet a bien été mis à jour ! <a href="index.php?p=showPost&amp;id=' . $post['id'] . '">Voir l\'article</a>
                             </div>';
                         } elseif ($_GET['result'] === 'failed') {
                             echo '<div class="alert alert-danger" role="alert">
@@ -36,10 +35,10 @@
                 </div>
                 <div class ="form-group">
                     <label for="content">Contenu du billet :</label><br />
-                    <textarea id="content" name="content" class="form-control" rows="20" cols="60"><?= nl2br(htmlspecialchars($post['content'])) ?></textarea>
+                    <textarea id="content" name="content" class="form-control" rows="20" cols="60"><?= $post['content'] ?></textarea>
                 </div>
                 <div class ="form-group">
-                    <button type="submit" class="btn btn-primary" value="Modifier"/>Modifier</button>
+                    <button type="submit" class="btn btn-primary" value="Mettre à jour"/>Mettre à jour</button>
                 </div>
             </form>
         </div>
