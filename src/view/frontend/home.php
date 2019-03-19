@@ -19,11 +19,11 @@ while ($data = $posts->fetch())
                     </div>
                     <div class="excerpt_post_home">
                         <p>
-                            <?= nl2br(strip_tags(substr($data['content'], 0, 200) . '...')) ?>
+                            <?= substr(nl2br(strip_tags($data['content'])), 0, 400) . '...' ?>
                         </p>
-                        <p>
-                            <a href="index.php?p=showPost&amp;id=<?= $data['id'] ?>" class="btn btn_link">Lire la suite</a>
-                        </p>
+                        <div>
+                            <a href="index.php?p=showPost&amp;id=<?= $data['id'] ?>" class="btn btn_link read_more">Lire la suite</a>
+                        </div>
                     </div>
                 </div>
             </div>
