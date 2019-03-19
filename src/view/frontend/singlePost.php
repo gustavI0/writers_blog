@@ -14,14 +14,6 @@ $title = $post['title']; ?>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <p><a href="index.php" class="btn btn_link">Retour à l'accueil</a></p>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
             <div class="single_post">
                 <div class="title_single_post">
                     <h2><?= htmlspecialchars($post['title']) ?></h2>
