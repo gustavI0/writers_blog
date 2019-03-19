@@ -2,7 +2,6 @@
  
 <?php ob_start(); ?>
 <h1>Le blog de l'écrivain</h1>
-<p><a href="index.php?p=admin" class="btn btn_link">Retour à l'administration</a></p>
 
 <h2>Ajouter un billet</h2>
 
