@@ -10,7 +10,6 @@ use Blog\Controller\{
 class Router {
 
 	private $request;
-
 	private $paths = [
 						"home" 			=> ["controller" => 'FrontController', "method" => 'home'], //Front
 						"showPost" 		=> ["controller" => 'FrontController', "method" => 'showPost'],
@@ -37,12 +36,20 @@ class Router {
         $this->request = $request;
     }
 
+    /**
+     * Récupère la requête
+     * @return string Première élément de l'URL
+     */
     public function getPath()
     {
     	$elements = explode('-', $this->request);
     	return $elements[0];
     }
 
+    /**
+     * Récupère les paramêtres de la requête
+     * @return array Différents paramêtres de l'URL
+     */
     public function getParams()
     {
     	$params = null;
@@ -66,6 +73,10 @@ class Router {
     	return $params;
     }
 
+    /**
+     * Envoie vers le controleur et la méthode appelée par la requête
+     * @return [type] [description]
+     */
     public function dispatch() 
     {
     	
