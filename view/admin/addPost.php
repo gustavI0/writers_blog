@@ -13,8 +13,9 @@
                     Au moins un des champs de billet est vide !
                     </div>';
                 endif;
-            endif; ?>
-        <?php if ($post->getId()):?>
+            endif;
+            
+        if ($post->getId()):?>
             <input type="hidden" name="values[id]" value="<?= $post->getId(); ?>"/>
         <?php endif;?>
         <div class ="form-group">
