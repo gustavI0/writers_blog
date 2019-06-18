@@ -99,7 +99,6 @@ class CommentManager extends Manager {
         $req->bindValue(':author', $values['author'], PDO::PARAM_STR);
         $req->bindValue(':content', $values['content'], PDO::PARAM_STR);
         $newComment = $req->execute();
-
     }
     
     /**
