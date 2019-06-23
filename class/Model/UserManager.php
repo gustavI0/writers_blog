@@ -10,7 +10,7 @@ class UserManager extends Manager {
 	/**
 	 * Récupère les données utilisateur
 	 * @param  String $pseudo Pseudo
-	 * @return Array         Données utilisateur
+	 * @return obj         Utilisateur
 	 */
 	public function getUserCred($values) 
 	{
@@ -40,13 +40,16 @@ class UserManager extends Manager {
 	 */
 	public function inscription($pseudo, $pass_hache) 
 	{
-		$db = $this->dbConnect();
-		$req = $db->prepare('
-			INSERT INTO users(pseudo, pwd) 
-			VALUES(:pseudo, :pwd)');
-		$req->execute(array(
-			'pseudo' => $pseudo,
-			'pwd' => $pass_hache));
+		$columns = 'pseudo, pwd';
+        $binded = ':pseudo, :pwd';
+
+        $db = $this->dbConnect();
+        $sql = $this->create($columns, $binded);
+        $req = $db->prepare($sql);
+
+        $req->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
+        $req->bindValue(':pwd', $pass_hache, PDO::PARAM_STR);
+		$req->execute();
 
 		return $req;
 	}

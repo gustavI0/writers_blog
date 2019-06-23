@@ -10,7 +10,7 @@ class CommentManager extends Manager {
     /**
      * Récupère les commentaires d'un billet spécifique
      * @param  int $postId ID du billet
-     * @return obj         Auteur et contenu du commentaire
+     * @return array         Tableau d'objets commentaires
      */
     public function getPostComments($postId) 
     {
@@ -66,7 +66,7 @@ class CommentManager extends Manager {
     /**
      * Récupère un commentaire  spécifique
      * @param  int $commentId ID du commentaire
-     * @return array             Titre et contenu du commentaire
+     * @return obj             Commentaire
      */
     public function getSingleComment($commentId) 
     {
@@ -85,7 +85,7 @@ class CommentManager extends Manager {
      * @param  int $postId  ID du billet
      * @param  string $author  Auteur
      * @param  string $comment Contenu du commentaire
-     * @return array          Titre et contenu du commentaire
+     * @return bool          Inséré ou non
      */
     public function insertComment($values) 
     {   
@@ -98,13 +98,15 @@ class CommentManager extends Manager {
         $req->bindValue(':postId', $values['postId'], PDO::PARAM_INT);
         $req->bindValue(':author', $values['author'], PDO::PARAM_STR);
         $req->bindValue(':content', $values['content'], PDO::PARAM_STR);
-        $newComment = $req->execute();
+        $req->execute();
+
+        return $req;
     }
     
     /**
      * Change le statut de moderation d'un commentaire
      * @param  int $commentId ID du commentaire
-     * @return Boolean            Statut de modération du commenaire
+     * @return bool            Statut de modération du commenaire
      */
     public function moderate($id, $bool) 
     {
@@ -116,15 +118,15 @@ class CommentManager extends Manager {
 
         $req->bindValue(':bool', $bool, PDO::PARAM_INT);
         $req->bindValue(':id', $id, PDO::PARAM_INT);
-        $affectedComment = $req->execute();
+        $req->execute();
         
-        return $affectedComment;
+        return $req;
     }
 
     /**
      * Efface un commentaire
      * @param  int $commentId ID du commentaire
-     * @return Bool            Effacé ou non
+     * @return bool            Effacé ou non
      */
     public function deleteComment($commentId) 
     {

@@ -9,7 +9,7 @@ class PostManager extends Manager {
 
     /**
      * Récupère les billets depuis la base de données
-     * @return Array Tableau de billets
+     * @return Array Tableau d'objets billets
      */
     public function getAllPosts()
     {
@@ -34,7 +34,7 @@ class PostManager extends Manager {
     /**
      * Récupère un billet par ID
      * @param  Int $postId ID du billet
-     * @return Array         Billet
+     * @return object         Billet
      */
     public function getSinglePost($postId)
     {
@@ -58,7 +58,7 @@ class PostManager extends Manager {
      * Ajoute un billet à la base deonnées
      * @param  String $postTitle   Titre du billet
      * @param  String $postContent Contenu du billet
-     * @return Array              Billet
+     * @return bool              Status
      */
     public function insertPost($values) 
     {   
@@ -70,7 +70,9 @@ class PostManager extends Manager {
 
         $req->bindValue(':title', $values['title'], PDO::PARAM_STR);
         $req->bindValue(':content', $values['content'], PDO::PARAM_STR);
-        $post = $req->execute();
+        $req->execute();
+
+        return $req;
     }
 
     /**
@@ -78,6 +80,7 @@ class PostManager extends Manager {
      * @param  Int $postId      ID du billet
      * @param  String $postTitle   Titre du billet
      * @param  String $postContent Contenu du billet
+     * @return   bool Status
      */
     public function updatePost($values) 
     {        
@@ -90,13 +93,15 @@ class PostManager extends Manager {
         $req->bindValue(':title', $values['title'], PDO::PARAM_STR);
         $req->bindValue(':content', $values['content'], PDO::PARAM_STR);
         $req->bindValue(':id', $values['id'], PDO::PARAM_INT);
-        $post = $req->execute();
+        $req->execute();
+
+        return $req;
     }
 
     /**
      * Efface le billet
      * @param  Int $postId ID du billet
-     * @return Array         Billet supprimé
+     * @return bool         Status
      */
     public function deletePost($postId) 
     {

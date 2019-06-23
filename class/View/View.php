@@ -28,7 +28,7 @@ class View {
 	}
 
 	/**
-	 * Affichage des pages admin
+	 * Affichage des pages admin controlés par la connexion de l'utilisaeur ou non
 	 * @param  array  $params Billets et commentaires
 	 * @return HTML         Pages d'administration
 	 */

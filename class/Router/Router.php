@@ -38,7 +38,7 @@ class Router {
 
     /**
      * Récupère la requête
-     * @return string Première élément de l'URL
+     * @return string Premier élément de l'URL
      */
     public function getPath()
     {
@@ -48,7 +48,7 @@ class Router {
 
     /**
      * Récupère les paramêtres de la requête
-     * @return array Différents paramêtres de l'URL
+     * @return array Paramêtres GET de l'URL ou POST du formulaire
      */
     public function getParams()
     {
@@ -75,7 +75,6 @@ class Router {
 
     /**
      * Envoie vers le controleur et la méthode appelée par la requête
-     * @return [type] [description]
      */
     public function dispatch() 
     {
