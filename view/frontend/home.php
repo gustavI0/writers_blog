@@ -16,7 +16,7 @@ foreach ($posts as $post): ?>
                     </div>
                     <div class="excerpt_post_home">
                         <p>
-                            <?= substr(nl2br(strip_tags($post->getContent())), 0, 420) . '...' ?>
+                            <?= substr(nl2br(strip_tags($post->getContent())), 0, 420) . '...'; ?>
                         </p>
                         <div>
                             <a href="showPost-id-<?= $post->getId(); ?>" class="btn btn_link read_more">Lire la suite</a>
